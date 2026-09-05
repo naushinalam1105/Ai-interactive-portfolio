@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naushin AI | Interactive Portfolio</title>
+  <!-- Marked.js CDN to render Markdown replies -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Layout Wrapper -->
+  <div class="app-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        
+        <!-- Profile Header -->
+        <div class="profile-badge">
+          <div class="avatar-container">
+            <img src="profile.jpg" alt="Naushin" class="avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="avatar-fallback">N</div>
+          </div>
+          <div class="profile-info">
+            <h2>Naushin AI</h2>
+            <p class="live-status"><span class="pulse-dot"></span> v2.0 • Live</p>
+          </div>
+        </div>
+
+        <!-- New Chat Button -->
+        <button id="newChatBtn" class="btn-new-chat">
+          <i data-lucide="plus"></i>
+          <span>New conversation</span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="nav-section">
+          <span class="nav-label">NAVIGATE PROFILE</span>
+          <button onclick="openModal('about')" class="nav-item">
+            <i data-lucide="user"></i> About me
+          </button>
+          <button onclick="openModal('skills')" class="nav-item">
+            <i data-lucide="code-2"></i> Skills & Tools
+          </button>
+          <button onclick="openModal('projects')" class="nav-item">
+            <i data-lucide="terminal"></i> Projects
+          </button>
+          <button onclick="openModal('education')" class="nav-item">
+            <i data-lucide="graduation-cap"></i> Education
+          </button>
+        </div>
+
+        <!-- History -->
+        <div class="nav-section">
+          <span class="nav-label">HISTORY</span>
+          <div class="history-item">
+            <i data-lucide="message-square"></i>
+            <span id="historyText">No active chat</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="status-indicator">
+          <span class="online-indicator"></span>
+          <span>Open to opportunities</span>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/naushinalam1105" target="_blank" title="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/naushin-14384b375" target="_blank" title="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <button onclick="openModal('about')" class="icon-btn" title="Resume Details">
+            <i data-lucide="file-text"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    
+    <main class="main-content">
+      <div class="ambient-glow"></div>
+
+      
+      <header class="top-header">
+        <div class="header-left">
+          <div class="avatar-small">
+            <img src="profile.jpg" alt="Avatar" class="avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="avatar-fallback">N</div>
+          </div>
+          <div>
+            <h3>Naushin Assistant</h3>
+            <p class="mono-sub">Neural Interface</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="status-chip">
+            <span class="online-indicator"></span>
+            <span>Available</span>
+          </div>
+          <button onclick="openModal('about')" class="btn-summary">
+            <i data-lucide="file-text"></i> Summary
+          </button>
+        </div>
+      </header>
+
+      
+      <div id="scrollContainer" class="scroll-container">
+        <div class="content-wrapper">
+
+          
+          <div id="heroView" class="hero-section">
+            <div class="hero-avatar-wrap">
+              <img src="profile.jpg" alt="Naushin" class="hero-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="hero-avatar-fallback">N</div>
+              <span class="hero-sparkle"><i data-lucide="sparkles"></i></span>
+            </div>
+
+            <p class="tagline">PORTFOLIO AI AGENT</p>
+            <h1 class="main-heading">Explore <span class="gradient-text">Naushin's</span> Profile.</h1>
+            <p class="sub-description">
+              Trained directly on verified technical experience, projects, skills, and coursework. Ask anything below.
+            </p>
+
+            
+            <div class="prompt-grid">
+              <button onclick="sendPrompt('Give me a quick introduction to Naushin.')" class="prompt-card">
+                <div class="prompt-info">
+                  <div class="prompt-icon"><i data-lucide="user"></i></div>
+                  <span>About Naushin</span>
+                </div>
+                <i data-lucide="chevron-right" class="arrow-icon"></i>
+              </button>
+
+              <button onclick="sendPrompt('What programming languages and frameworks does Naushin use?')" class="prompt-card">
+                <div class="prompt-info">
+                  <div class="prompt-icon"><i data-lucide="code-2"></i></div>
+                  <span>Technical Stack</span>
+                </div>
+                <i data-lucide="chevron-right" class="arrow-icon"></i>
+              </button>
+
+              <button onclick="sendPrompt('What internships and roles has Naushin worked at?')" class="prompt-card">
+                <div class="prompt-info">
+                  <div class="prompt-icon"><i data-lucide="briefcase"></i></div>
+                  <span>Internship Journey</span>
+                </div>
+                <i data-lucide="chevron-right" class="arrow-icon"></i>
+              </button>
+
+              <button onclick="sendPrompt('Tell me about Naushin\'s key projects.')" class="prompt-card">
+                <div class="prompt-info">
+                  <div class="prompt-icon"><i data-lucide="terminal"></i></div>
+                  <span>Key Projects</span>
+                </div>
+                <i data-lucide="chevron-right" class="arrow-icon"></i>
+              </button>
+            </div>
+          </div>
+
+          
+          <div id="messagesList" class="messages-list hidden"></div>
+
+          
+          <div id="typingIndicator" class="typing-indicator hidden">
+            <div class="avatar-small">
+              <img src="profile.jpg" alt="Avatar" class="avatar-img" onerror="this.style.display='none';" />
+            </div>
+            <div class="dots-wrapper">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      
+      <div class="input-bar-container">
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" type="text" placeholder="Ask anything about Naushin..." autocomplete="off" />
+          <button type="submit" id="sendBtn">
+            <i data-lucide="send"></i>
+          </button>
+        </form>
+        <p class="footer-note">Contextual AI Agent • Verified Candidate Profile</p>
+      </div>
+
+    </main>
+
+  </div>
+
+  
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal-box">
+      <button onclick="closeModal()" class="btn-close-modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# Virtual environment
+backend/.venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets & Environment variables
+.env
+backend/.env
+
+# OS files
+.DS_Store
+Thumbs.db
