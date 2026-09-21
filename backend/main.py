@@ -13,7 +13,6 @@ if not GROQ_API_KEY:
 
 client = Groq(api_key=GROQ_API_KEY)
 model = "openai/gpt-oss-120b"
-
 app = FastAPI(title="Naushin AI Portfolio API")
 
 app.add_middleware(
@@ -28,44 +27,67 @@ PERSONAL_PROFILE = """
 CANDIDATE: Naushin
 EMAIL: naushinalam786@gmail.com
 LOCATION: Durgapur, West Bengal, India
+LINKS: linkedin.com/in/naushin-14384b375 | github.com/naushinalam1105
 
 PROFESSIONAL SUMMARY:
-B.Tech Computer Science & Engineering student (graduating May 2028) with hands-on experience in frontend AI engineering, full-stack web development, and responsive UI design.
-
-TECHNICAL SKILLS:
-- Languages: Python, Java, C, JavaScript, SQL
-- Frontend: HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS
-- Backend & Databases: Node.js, Flask, SQLite, MySQL
-- Tools & Design: Git, GitHub, VS Code, Figma, UI/UX Design Systems
-
-INTERNSHIPS & WORK EXPERIENCE:
-- Frontend AI Engineering Intern at FlyRank AI (Jun 2026 – Present): Developed responsive web interfaces for AI-driven features and real-time user workflows.
-- Web Developer Intern at InAmigos Foundation (May 2026 – Jun 2026): Built mobile-responsive components, optimized client-side performance, and refined UI designs.
-- Full-Stack Web Developer Intern at Future Interns (Apr 2026 – May 2026): Delivered end-to-end web applications with JavaScript, Node.js, Flask, and SQLite, implementing client/server-side validations.
-
-KEY PROJECTS:
-- Carbon Footprint Tracker Platform: Interactive web dashboard built with JavaScript, HTML5, and Tailwind CSS to track and visualize carbon emissions.
-- Mini CRM System: Full-stack solution using JavaScript, Python, Node.js, and SQLite with complete CRUD workflows for client management.
-- Starcups Web Interface: Responsive digital coffee shop UI designed with modern CSS and JavaScript.
-- AI Interactive Portfolio: Full-stack AI-driven personal portfolio featuring real-time conversational intelligence powered by FastAPI and Groq LLM inference.
+Results-driven AI Full Stack Engineer and Computer Science undergraduate specializing in high-performance web architectures, Generative AI orchestration, and scalable cloud microservices. Hands-on expertise building asynchronous REST APIs using Python, FastAPI, Pydantic, and Uvicorn, alongside responsive, modern frontends with React.js and Tailwind CSS. Adept at LLM integration (Groq API, prompt engineering), full-stack data persistence, and end-to-end pipeline deployment.
 
 EDUCATION & ACADEMICS:
-- Bachelor of Technology (B.Tech) in Computer Science & Engineering (2024 – 2028)
+- Dr. B.C. Roy Engineering College, Durgapur, WB: B.Tech in Computer Science & Engineering (Expected Graduation: May 2028)
   * 1st Year CGPA: 9.48
   * 2nd Year CGPA: 9.92
-- Senior Secondary (Class XII): 83.00% (CBSE)
-- Secondary (Class X): 93.80% (CBSE)
+- Kendriya Vidyalaya (CBSE):
+  * Senior Secondary (Class XII): 83.00%
+  * Secondary (Class X): 93.80%
 
-CERTIFICATIONS & ACHIEVEMENTS:
-- Microsoft Certified: AI-901 Azure AI Fundamentals
-- Simplilearn Professional Course Completion in Full-Stack Web Development
-- AR/VR Seminar & Emerging Technologies Workshop Completion
+TECHNICAL SKILLS:
+- Languages: Python, JavaScript (ES6+), Java, C, SQL, HTML5, CSS3
+- AI & Machine Learning: Groq LLM API, Prompt Engineering, Agentic AI, REST API LLM Inference, Context Optimization
+- Backend & Runtimes: FastAPI, Uvicorn, Pydantic, Node.js, Express.js, Flask
+- Frontend Technologies: React.js, Vite, Tailwind CSS (v4), Recharts Data Visualization, Lucide React
+- Databases & Cloud: MongoDB Atlas, MySQL, SQLite, Render, Vercel, Microsoft Azure
+- Tools & Core Engineering: Data Structures & Algorithms (DSA), Git, GitHub, UI/UX (Figma), AutoCAD (3D Printing)
+
+PROFESSIONAL EXPERIENCE:
+- Frontend AI Engineering Intern at FlyRank AI (Jun 2026 – Sep 2026):
+  * Developed and maintained scalable, responsive client interfaces for AI workflows, converting Figma system designs into modular React components.
+  * Integrated asynchronous client-side applications with high-throughput backend endpoints, reducing latency in interactive AI features.
+  * Conducted performance audits and DOM render optimizations to accelerate user interactions across dynamic AI interfaces.
+- Web Developer Intern (Hybrid) at InAmigos Foundation (IAF) (May 2026 – Jun 2026):
+  * Built mobile-first responsive web modules, enhancing platform layout consistency and visual accessibility across diverse viewports.
+  * Partnered with UI/UX teams to modernize core page components, streamlining CSS utility layouts for faster overall load speeds.
+
+KEY PROJECTS:
+- Carbon Footprint & Eco-Impact Tracker Platform:
+  * Tech Stack: React, Vite, Tailwind CSS v4, Recharts, Lucide React
+  * GitHub: https://github.com/naushinalam1105/carbon-footprint-tracker
+  * Details: Real-time environmental tracking dashboard tracking transit profiles, electricity metrics, dietary models, and domestic waste with Recharts sandboxes.
+- AI-Powered Interactive Portfolio & Assistant:
+  * Tech Stack: Python, FastAPI, Uvicorn, Pydantic, Groq LLM, JavaScript
+  * GitHub: https://github.com/naushinalam1105/Ai-interactive-portfolio
+  * Details: Full-stack AI portfolio with an integrated conversational agent driven by Groq LLM API, strict Pydantic schema validation, and sub-400ms latency.
+- Full-Stack Mini CRM Platform:
+  * Tech Stack: React.js, Vite, Tailwind CSS, Node.js, Express.js, MongoDB Atlas
+  * GitHub: https://github.com/naushinalam1105/fullstack_MiniCRM
+  * Details: End-to-end MERN architecture handling client pipeline management with full CRUD operations, lead conversion tracking, and multi-cloud deployment.
+
+CERTIFICATIONS:
+- Agentic AI Foundation Associate – Oracle
+- Microsoft Certified: Azure AI Fundamentals – Microsoft
+- Google Prompting Essentials – Google
+- 3D Printing & Additive Manufacturing (160 Hours) – C-DAC, MeitY
+- Data Visualisation: Empowering Business – Tata (Forage)
+- Cybersecurity Job Simulation – Deloitte (Forage)
+
+ACHIEVEMENTS & LEADERSHIP:
+- Secretary at Dezinova Club (Jul 2025 – Present): Lead departmental project showcases, schedule tech events, and coordinate operational student logistics.
+- 2nd Rank at Horizon Techfest: Achieved 2nd place in the Virtual Visionary Battles technical competition.
 
 ACTIVITIES, INTERESTS & HOBBIES:
-- Photography, visual framing, and digital aesthetics.
-- UI/UX conceptual design, prototyping, and modern interface styling.
-- Exploring emerging AI tools, LLM integrations, and frontend architectures.
-- Participating in technical workshops, hackathons, and collaborative open-source learning.
+- UI/UX conceptual design, design systems, and prototyping in Figma.
+- 3D printing and digital fabrication exploring AutoCAD models.
+- Generative AI architectures, prompt optimization, and agentic workflows.
+- Technical leadership, organizing student hackathons, and departmental tech fests.
 """
 
 class Experience(BaseModel):
@@ -74,6 +96,12 @@ class Experience(BaseModel):
     period: str
     description: str
 
+class Project(BaseModel):
+    title: str
+    tech_stack: str
+    description: str
+    github_url: str
+
 class Resume(BaseModel):
     name: str = "Naushin"
     email: str = "naushinalam786@gmail.com"
@@ -81,9 +109,10 @@ class Resume(BaseModel):
     summary: str = ""
     skills: list[str] = Field(default_factory=list)
     experiences: list[Experience] = Field(default_factory=list)
-    projects: list[str] = Field(default_factory=list)
+    projects: list[Project] = Field(default_factory=list)
     education: list[str] = Field(default_factory=list)
     achievements: list[str] = Field(default_factory=list)
+    certifications: list[str] = Field(default_factory=list)
     interests: list[str] = Field(default_factory=list)
 
 class QueryRequest(BaseModel):
@@ -91,18 +120,18 @@ class QueryRequest(BaseModel):
 
 def parse_resume(profile_text: str) -> Resume:
     prompt = f"""
-Extract and structure the following profile text into valid JSON matching this schema:
+Extract and structure the following candidate profile text into valid JSON strictly matching this schema:
 {{
   "name": "Naushin",
   "email": "string",
-  "phone": "string",
   "location": "string",
   "summary": "string",
   "skills": ["string"],
   "experiences": [{{"role": "string", "company": "string", "period": "string", "description": "string"}}],
-  "projects": ["string"],
+  "projects": [{{"title": "string", "tech_stack": "string", "description": "string", "github_url": "string"}}],
   "education": ["string"],
   "achievements": ["string"],
+  "certifications": ["string"],
   "interests": ["string"]
 }}
 
@@ -131,34 +160,70 @@ Return ONLY clean, valid JSON with no markdown formatting or extra text.
             name="Naushin",
             email="naushinalam786@gmail.com",
             location="Durgapur, West Bengal, India",
-            summary="Computer Science & Engineering student with experience in frontend AI engineering and full-stack web development.",
-            skills=["Python", "Java", "C", "JavaScript", "HTML5", "CSS3", "React.js", "Tailwind CSS", "Node.js", "Flask", "SQLite", "MySQL", "Git", "Figma"],
+            summary="AI Full Stack Engineer and Computer Science undergraduate specializing in high-performance web architectures, Generative AI orchestration, asynchronous REST APIs (FastAPI), and modern frontends (React.js, Tailwind CSS).",
+            skills=[
+                "Python", "JavaScript (ES6+)", "Java", "C", "SQL", "HTML5", "CSS3",
+                "FastAPI", "Uvicorn", "Pydantic", "Node.js", "Express.js", "Flask",
+                "React.js", "Vite", "Tailwind CSS v4", "Recharts", "Lucide React",
+                "MongoDB Atlas", "MySQL", "SQLite", "Render", "Vercel", "Microsoft Azure",
+                "Groq LLM API", "Prompt Engineering", "Agentic AI", "Figma", "AutoCAD (3D Printing)"
+            ],
             experiences=[
-                Experience(role="Frontend AI Engineering Intern", company="FlyRank AI", period="Jun 2026 – Present", description="Built responsive web interfaces for AI-driven features."),
-                Experience(role="Web Developer Intern", company="InAmigos Foundation", period="May 2026 – Jun 2026", description="Developed mobile-responsive UI components and design systems."),
-                Experience(role="Full-Stack Web Developer Intern", company="Future Interns", period="Apr 2026 – May 2026", description="Delivered full-stack web applications with Node.js, Flask, and SQLite.")
+                Experience(
+                    role="Frontend AI Engineering Intern",
+                    company="FlyRank AI",
+                    period="Jun 2026 – Sep 2026",
+                    description="Developed and maintained scalable client interfaces for AI workflows, converting Figma designs to React and optimizing DOM rendering."
+                ),
+                Experience(
+                    role="Web Developer Intern (Hybrid)",
+                    company="InAmigos Foundation (IAF)",
+                    period="May 2026 – Jun 2026",
+                    description="Engineered mobile-first responsive web modules and modernized core page components for improved load performance."
+                )
             ],
             projects=[
-                "Carbon Footprint Tracker: Web platform built with JavaScript and Tailwind CSS.",
-                "Mini CRM System: Full-stack solution using JavaScript, Python, and SQLite.",
-                "Starcups Web Interface: Modern responsive UI designed with CSS and JavaScript.",
-                "AI Interactive Portfolio: Full-stack AI-driven personal portfolio powered by FastAPI and Groq."
+                Project(
+                    title="Carbon Footprint & Eco-Impact Tracker Platform",
+                    tech_stack="React, Vite, Tailwind CSS v4, Recharts, Lucide React",
+                    description="Real-time environmental calculation dashboard tracking emissions with live Recharts offset simulation models.",
+                    github_url="https://github.com/naushinalam1105/carbon-footprint-tracker"
+                ),
+                Project(
+                    title="AI-Powered Interactive Portfolio & Assistant",
+                    tech_stack="Python, FastAPI, Uvicorn, Pydantic, Groq LLM, Vanilla JS",
+                    description="Full-stack AI portfolio with an integrated conversational agent driven by Groq LLM API and sub-400ms latency.",
+                    github_url="https://github.com/naushinalam1105/Ai-interactive-portfolio"[cite: 2]
+                ),
+                Project(
+                    title="Full-Stack Mini CRM Platform",
+                    tech_stack="React.js, Vite, Tailwind CSS, Node.js, Express.js, MongoDB Atlas",
+                    description="End-to-end MERN architecture handling client pipeline management with complete CRUD operations and conversion analytics.",
+                    github_url="https://github.com/naushinalam1105/fullstack_MiniCRM"
+                )
             ],
             education=[
-                "B.Tech in Computer Science & Engineering (2024 – 2028) — 1st Year CGPA: 9.48 | 2nd Year CGPA: 9.92",
-                "Senior Secondary (Class XII): 83.00% (CBSE)",
-                "Secondary (Class X): 93.80% (CBSE)"
+                "B.Tech in Computer Science & Engineering, Dr. B.C. Roy Engineering College (2024 – 2028) — 1st Yr CGPA: 9.48 | 2nd Yr CGPA: 9.92",
+                "Senior Secondary (Class XII), Kendriya Vidyalaya: 83.00%",
+                "Secondary (Class X), Kendriya Vidyalaya: 93.80%"
+            ],
+            certifications=[
+                "Agentic AI Foundation Associate – Oracle",
+                "Microsoft Certified: Azure AI Fundamentals – Microsoft",
+                "Google Prompting Essentials – Google",
+                "3D Printing & Additive Manufacturing (160 Hours) – C-DAC, MeitY",
+                "Data Visualisation: Empowering Business – Tata (Forage)",
+                "Cybersecurity Job Simulation – Deloitte (Forage)"
             ],
             achievements=[
-                "Microsoft Certified: AI-901 Azure AI Fundamentals",
-                "Simplilearn Professional Course Completion in Full-Stack Web Development",
-                "AR/VR Seminar & Emerging Technologies Workshop Completion"
+                "Secretary – Dezinova Club (Jul 2025 – Present): Lead departmental showcases and student tech events.",
+                "2nd Rank – Horizon Techfest: Virtual Visionary Battles technical competition."
             ],
             interests=[
-                "Photography, visual framing, and digital aesthetics",
-                "UI/UX conceptual design, prototyping, and modern interface styling",
-                "Exploring emerging AI tools, LLM integrations, and frontend architectures",
-                "Participating in technical workshops, hackathons, and collaborative open-source learning"
+                "UI/UX conceptual design, system styling, and prototyping in Figma",
+                "3D printing, CAD modeling, and digital additive manufacturing",
+                "Generative AI orchestration and Agentic AI architectures",
+                "Technical leadership and tech community event organization"
             ]
         )
 
@@ -173,16 +238,18 @@ Candidate Knowledge Base:
 
 Core Operating Guidelines:
 1. SEMANTIC SYNONYM MATCHING & INTENT UNDERSTANDING:
-   - "Hobbies", "Passions", "Interests", "Leisure", "Activities", "What does she do outside coding" -> Answer using Naushin's Activities, Interests & Hobbies.
-   - "Achievements", "Awards", "Recognitions", "Certificates", "Credentials" -> Answer using Certifications, Honors, and Key Achievements.
-   - "Stack", "Tools", "Technologies", "Tech stack", "What does she code in" -> Answer using Technical Skills and Languages.
-   - "Background", "Bio", "About", "Summary", "Who is she" -> Answer using Professional Summary, Education, and Core Highlights.
-   - "Work", "Jobs", "Roles", "Employment", "Experience" -> Answer using Internships and Professional Experience.
-   - "Projects", "What has she built", "Innovations" -> Answer using Key Projects.
+   - "Projects", "Portfolio", "What has she built", "Code", "GitHub repo", "Repositories" -> Provide details on her key projects and ALWAYS include the project's direct clickable markdown link (e.g. [View GitHub Repository](url)).
+   - "CGPA", "GPA", "Marks", "Grades", "Academic performance", "College", "Schooling" -> Answer using Naushin's B.Tech CGPAs (1st Year: 9.48, 2nd Year: 9.92) and CBSE scores (Class XII: 83%, Class X: 93.8%).
+   - "Hobbies", "Passions", "Interests", "Leisure", "Activities" -> Answer using Naushin's Interests, Club Leadership (Dezinova Club), and 3D printing pursuits.
+   - "Certifications", "Credentials", "Licenses", "Courses" -> Answer using her official certifications.
+   - "Achievements", "Awards", "Competitions", "Rank" -> Answer using her Horizon Techfest 2nd Rank and Dezinova Club Secretary leadership.
+   - "Stack", "Tools", "Technologies", "Tech stack" -> Answer using her technical skills categorized by Languages, AI/ML, Backend, Frontend, and Cloud/Databases.
+   - "Background", "Bio", "About", "Summary" -> Answer using Professional Summary, College, and Core Engineering Focus.
+   - "Work", "Jobs", "Roles", "Employment", "Internships" -> Answer using FlyRank AI and InAmigos Foundation.
 
 2. ACCURACY & CONSTRAINTS:
-   - Always speak strictly in the third person ("Naushin is...", "Her experience includes...", "She has developed..."). Never use "I", "my", or "me".
-   - Direct Scope Relevance: Answer ONLY the category asked without unnecessarily mixing unrequested sections.
+   - Always speak strictly in the third person ("Naushin is...", "Her experience includes..."). Never use "I", "my", or "me".
+   - Direct Scope Relevance: Answer only the category asked without mixing unrequested sections.
    - Format responses cleanly with concise bullet points and bold key terms.
    - If a topic has zero related context in the profile, politely reply: "I don't have information regarding that in Naushin's profile."
 """

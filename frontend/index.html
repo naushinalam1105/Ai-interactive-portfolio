@@ -44,10 +44,16 @@
             <i data-lucide="user"></i> About me
           </button>
           <button onclick="openModal('skills')" class="nav-item">
-            <i data-lucide="code-2"></i> Skills & Tools
+            <i data-lucide="code-2"></i> Skills & Stack
           </button>
           <button onclick="openModal('projects')" class="nav-item">
             <i data-lucide="terminal"></i> Projects
+          </button>
+          <button onclick="openModal('experience')" class="nav-item">
+            <i data-lucide="briefcase"></i> Experience
+          </button>
+          <button onclick="openModal('certifications')" class="nav-item">
+            <i data-lucide="award"></i> Certifications
           </button>
           <button onclick="openModal('education')" class="nav-item">
             <i data-lucide="graduation-cap"></i> Education
@@ -78,18 +84,18 @@
           <a href="https://linkedin.com/in/naushin-14384b375" target="_blank" title="LinkedIn">
             <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           </a>
-          <button onclick="openModal('about')" class="icon-btn" title="Resume Details">
+          <button onclick="openModal('about')" class="icon-btn" title="Profile Details">
             <i data-lucide="file-text"></i>
           </button>
         </div>
       </div>
     </aside>
 
-    
+    <!-- Main Content Area -->
     <main class="main-content">
       <div class="ambient-glow"></div>
 
-      
+      <!-- Top Header -->
       <header class="top-header">
         <div class="header-left">
           <div class="avatar-small">
@@ -98,7 +104,7 @@
           </div>
           <div>
             <h3>Naushin Assistant</h3>
-            <p class="mono-sub">Neural Interface</p>
+            <p class="mono-sub">Neural Portfolio Agent</p>
           </div>
         </div>
         <div class="header-right">
@@ -112,11 +118,11 @@
         </div>
       </header>
 
-      
+      <!-- Scrollable Message & Hero Box -->
       <div id="scrollContainer" class="scroll-container">
         <div class="content-wrapper">
 
-          
+          <!-- Hero Section -->
           <div id="heroView" class="hero-section">
             <div class="hero-avatar-wrap">
               <img src="profile.jpg" alt="Naushin" class="hero-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
@@ -124,23 +130,23 @@
               <span class="hero-sparkle"><i data-lucide="sparkles"></i></span>
             </div>
 
-            <p class="tagline">PORTFOLIO AI AGENT</p>
-            <h1 class="main-heading">Explore <span class="gradient-text">Naushin's</span> Profile.</h1>
+            <p class="tagline">AI FULL STACK ENGINEER</p>
+            <h1 class="main-heading">Explore <span class="gradient-text">Naushin's</span> Work.</h1>
             <p class="sub-description">
-              Trained directly on verified technical experience, projects, skills, and coursework. Ask anything below.
+              Trained on verified experience in FastAPI, React, Groq LLM pipelines, certifications, and academic performance.
             </p>
 
-            
+            <!-- Quick Prompt Grid -->
             <div class="prompt-grid">
-              <button onclick="sendPrompt('Give me a quick introduction to Naushin.')" class="prompt-card">
+              <button onclick="sendPrompt('Give me a brief summary of Naushin\'s engineering background.')" class="prompt-card">
                 <div class="prompt-info">
                   <div class="prompt-icon"><i data-lucide="user"></i></div>
-                  <span>About Naushin</span>
+                  <span>Engineering Summary</span>
                 </div>
                 <i data-lucide="chevron-right" class="arrow-icon"></i>
               </button>
 
-              <button onclick="sendPrompt('What programming languages and frameworks does Naushin use?')" class="prompt-card">
+              <button onclick="sendPrompt('What technical stack and tools does Naushin specialize in?')" class="prompt-card">
                 <div class="prompt-info">
                   <div class="prompt-icon"><i data-lucide="code-2"></i></div>
                   <span>Technical Stack</span>
@@ -148,15 +154,15 @@
                 <i data-lucide="chevron-right" class="arrow-icon"></i>
               </button>
 
-              <button onclick="sendPrompt('What internships and roles has Naushin worked at?')" class="prompt-card">
+              <button onclick="sendPrompt('Tell me about Naushin\'s internships at FlyRank AI and InAmigos Foundation.')" class="prompt-card">
                 <div class="prompt-info">
                   <div class="prompt-icon"><i data-lucide="briefcase"></i></div>
-                  <span>Internship Journey</span>
+                  <span>Work Experience</span>
                 </div>
                 <i data-lucide="chevron-right" class="arrow-icon"></i>
               </button>
 
-              <button onclick="sendPrompt('Tell me about Naushin\'s key projects.')" class="prompt-card">
+              <button onclick="sendPrompt('What key projects has Naushin engineered?')" class="prompt-card">
                 <div class="prompt-info">
                   <div class="prompt-icon"><i data-lucide="terminal"></i></div>
                   <span>Key Projects</span>
@@ -166,10 +172,10 @@
             </div>
           </div>
 
-          
+          <!-- Messages Container -->
           <div id="messagesList" class="messages-list hidden"></div>
 
-          
+          <!-- Typing Indicator -->
           <div id="typingIndicator" class="typing-indicator hidden">
             <div class="avatar-small">
               <img src="profile.jpg" alt="Avatar" class="avatar-img" onerror="this.style.display='none';" />
@@ -184,22 +190,22 @@
         </div>
       </div>
 
-      
+      <!-- Bottom Chat Input Bar -->
       <div class="input-bar-container">
         <form id="chatForm" class="chat-form">
-          <input id="chatInput" type="text" placeholder="Ask anything about Naushin..." autocomplete="off" />
+          <input id="chatInput" type="text" placeholder="Ask about projects, stack, CGPA, certifications..." autocomplete="off" />
           <button type="submit" id="sendBtn">
             <i data-lucide="send"></i>
           </button>
         </form>
-        <p class="footer-note">Contextual AI Agent • Verified Candidate Profile</p>
+        <p class="footer-note">Grounded on Resume Context • Powered by Groq & LLaMA 3.3</p>
       </div>
 
     </main>
 
   </div>
 
-  
+  <!-- Modal Component -->
   <div id="modalOverlay" class="modal-overlay hidden">
     <div class="modal-box">
       <button onclick="closeModal()" class="btn-close-modal">

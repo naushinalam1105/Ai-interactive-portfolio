@@ -1,10 +1,9 @@
 // -------------------------------------------------------------
-// 1. CONFIGURATION & DOM ELEMENTS
+// 1. CONFIGURATION & DOM REFERENCES
 // -------------------------------------------------------------
 const API_BASE = "http://localhost:8000";
 let profileData = null;
 
-// Grab all necessary HTML elements
 const chatForm = document.getElementById("chatForm");
 const chatInput = document.getElementById("chatInput");
 const heroView = document.getElementById("heroView");
@@ -17,12 +16,11 @@ const historyText = document.getElementById("historyText");
 const modalOverlay = document.getElementById("modalOverlay");
 const modalBody = document.getElementById("modalBody");
 
-// Render Lucide SVG icons on page load
+// Render Lucide SVG icons
 lucide.createIcons();
 
-
 // -------------------------------------------------------------
-// 2. FETCH CANDIDATE PROFILE DATA
+// 2. FETCH PROFILE ON STARTUP
 // -------------------------------------------------------------
 async function loadProfile() {
   try {
@@ -34,31 +32,24 @@ async function loadProfile() {
 }
 loadProfile();
 
-
 // -------------------------------------------------------------
-// 3. CHAT LOGIC & DOM UPDATES
+// 3. CHAT HANDLING & DOM UPDATES
 // -------------------------------------------------------------
 function scrollToBottom() {
   scrollContainer.scrollTop = scrollContainer.scrollHeight;
 }
 
-// Function to add a chat bubble (User or AI)
 function addMessage(sender, text) {
-  // Hide the hero welcome box and show the messages list
   heroView.classList.add("hidden");
   messagesList.classList.remove("hidden");
 
-  // Create a message container div
   const messageRow = document.createElement("div");
   messageRow.className = `message-row ${sender}`;
 
   if (sender === "user") {
-    messageRow.innerHTML = `
-      <div class="message-bubble">${text}</div>
-    `;
+    messageRow.innerHTML = `<div class="message-bubble">${text}</div>`;
     historyText.textContent = text;
   } else {
-    // Convert Markdown from AI into HTML using Marked.js
     const htmlContent = marked.parse(text);
     messageRow.innerHTML = `
       <div class="avatar-small">
@@ -72,19 +63,15 @@ function addMessage(sender, text) {
   scrollToBottom();
 }
 
-// Function to call the FastAPI backend
 async function askAI(userQuestion) {
   if (!userQuestion) return;
 
-  // 1. Clear input & show user message immediately
   chatInput.value = "";
   addMessage("user", userQuestion);
 
-  // 2. Show loading dots
   typingIndicator.classList.remove("hidden");
   scrollToBottom();
 
-  // 3. Send request to backend
   try {
     const response = await fetch(`${API_BASE}/generate`, {
       method: "POST",
@@ -93,7 +80,6 @@ async function askAI(userQuestion) {
     });
     const data = await response.json();
 
-    // 4. Hide loading dots & display AI reply
     typingIndicator.classList.add("hidden");
     addMessage("assistant", data.reply);
   } catch (error) {
@@ -102,19 +88,16 @@ async function askAI(userQuestion) {
   }
 }
 
-// Form Submit Event (Pressing Enter or clicking Send)
 chatForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const question = chatInput.value.trim();
   askAI(question);
 });
 
-// Quick Prompt Card Click
 function sendPrompt(queryText) {
   askAI(queryText);
 }
 
-// New Chat Button Click
 newChatBtn.addEventListener("click", () => {
   messagesList.innerHTML = "";
   messagesList.classList.add("hidden");
@@ -122,9 +105,8 @@ newChatBtn.addEventListener("click", () => {
   historyText.textContent = "No active chat";
 });
 
-
 // -------------------------------------------------------------
-// 4. MODAL POPUPS (About, Skills, Projects, Education)
+// 4. MODALS (With interactive GitHub Repository Links)
 // -------------------------------------------------------------
 function openModal(category) {
   modalOverlay.classList.remove("hidden");
@@ -134,10 +116,12 @@ function openModal(category) {
       <h3 class="modal-title"><i data-lucide="user"></i> About Naushin</h3>
       <p class="modal-content-text" style="font-family: monospace;">
         Email: <span style="color:#f1f5f9;">${profileData?.email || "naushinalam786@gmail.com"}</span><br>
-        Location: <span style="color:#f1f5f9;">Durgapur, West Bengal</span>
+        Location: <span style="color:#f1f5f9;">${profileData?.location || "Durgapur, West Bengal"}</span><br>
+        Links: <a href="https://github.com/naushinalam1105" target="_blank" style="color:#34d399;">GitHub</a> | 
+               <a href="https://linkedin.com/in/naushin-14384b375" target="_blank" style="color:#34d399;">LinkedIn</a>
       </p>
       <p class="modal-content-text" style="padding-top: 8px;">
-        Computer Science & Engineering student with experience in frontend AI engineering, full-stack web development, and GenAI learner.
+        ${profileData?.summary || "AI Full Stack Engineer and Computer Science undergraduate specializing in high-performance web architectures, Generative AI orchestration, and asynchronous REST APIs."}
       </p>
     `;
   } 
@@ -147,32 +131,70 @@ function openModal(category) {
       : "<p class='modal-content-text'>No skills loaded.</p>";
 
     modalBody.innerHTML = `
-      <h3 class="modal-title"><i data-lucide="code-2"></i> Technical Stack</h3>
+      <h3 class="modal-title"><i data-lucide="code-2"></i> Technical Stack & Tools</h3>
       <div class="chips-container">${skillsList}</div>
     `;
   } 
   else if (category === "projects") {
     const projectsList = profileData?.projects
-      ? profileData.projects.map(item => `<div class="item-card">${item}</div>`).join("")
+      ? profileData.projects.map(item => `
+          <div class="item-card" style="margin-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+              <span style="font-weight: 600; color: #34d399;">${item.title}</span>
+              ${item.github_url ? `
+                <a href="${item.github_url}" target="_blank" style="color: #6ee7b7; font-size: 11px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none; border: 1px solid rgba(52, 211, 153, 0.3); padding: 3px 8px; border-radius: 6px; background: rgba(52, 211, 153, 0.08);">
+                  <i data-lucide="github" style="width: 13px; height: 13px;"></i> Code
+                </a>
+              ` : ''}
+            </div>
+            <div style="font-size: 11px; color: #64748b; font-family: monospace; margin-top: 3px;">${item.tech_stack}</div>
+            <p style="font-size: 12px; color: #94a3b8; margin-top: 6px; line-height: 1.5;">${item.description}</p>
+          </div>
+        `).join("")
       : "<p class='modal-content-text'>No projects listed.</p>";
 
     modalBody.innerHTML = `
-      <h3 class="modal-title"><i data-lucide="terminal"></i> Key Projects</h3>
+      <h3 class="modal-title"><i data-lucide="terminal"></i> Featured Projects</h3>
       <div style="margin-top: 10px;">${projectsList}</div>
     `;
   } 
+  else if (category === "experience") {
+    const expList = profileData?.experiences
+      ? profileData.experiences.map(exp => `
+          <div class="item-card" style="margin-top: 10px;">
+            <div style="font-weight: 600; color: #34d399;">${exp.role} — ${exp.company}</div>
+            <div style="font-size: 11px; color: #64748b; margin-bottom: 4px; font-family: monospace;">${exp.period}</div>
+            <p style="font-size: 12px; color: #94a3b8;">${exp.description}</p>
+          </div>
+        `).join("")
+      : "<p class='modal-content-text'>No experience listed.</p>";
+
+    modalBody.innerHTML = `
+      <h3 class="modal-title"><i data-lucide="briefcase"></i> Work Experience</h3>
+      <div style="margin-top: 10px;">${expList}</div>
+    `;
+  }
+  else if (category === "certifications") {
+    const certList = profileData?.certifications
+      ? profileData.certifications.map(item => `<div class="item-card">${item}</div>`).join("")
+      : "<p class='modal-content-text'>No certifications listed.</p>";
+
+    modalBody.innerHTML = `
+      <h3 class="modal-title"><i data-lucide="award"></i> Certifications & Credentials</h3>
+      <div style="margin-top: 10px;">${certList}</div>
+    `;
+  }
   else if (category === "education") {
     const educationList = profileData?.education
       ? profileData.education.map(item => `<div class="item-card">${item}</div>`).join("")
       : "<p class='modal-content-text'>No education entries listed.</p>";
 
     modalBody.innerHTML = `
-      <h3 class="modal-title"><i data-lucide="graduation-cap"></i> Education & Qualifications</h3>
+      <h3 class="modal-title"><i data-lucide="graduation-cap"></i> Education & Academics</h3>
       <div style="margin-top: 10px;">${educationList}</div>
     `;
   }
 
-  // Re-run Lucide icons for icons injected inside modal HTML
   lucide.createIcons();
 }
 
@@ -180,9 +202,6 @@ function closeModal() {
   modalOverlay.classList.add("hidden");
 }
 
-// Close modal if user clicks outside the modal box
 window.addEventListener("click", (e) => {
-  if (e.target === modalOverlay) {
-    closeModal();
-  }
+  if (e.target === modalOverlay) closeModal();
 });
