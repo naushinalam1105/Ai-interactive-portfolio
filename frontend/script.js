@@ -33,13 +33,36 @@ async function loadProfile() {
 loadProfile();
 
 // -------------------------------------------------------------
-// 3. CHAT HANDLING & DOM UPDATES
+// 3. CHAT HANDLING & WORD-BY-WORD STREAMING
 // -------------------------------------------------------------
 function scrollToBottom() {
   scrollContainer.scrollTop = scrollContainer.scrollHeight;
 }
 
-function addMessage(sender, text) {
+// Function to stream text word-by-word into the bubble
+function typeWordsIntoBubble(bubbleElement, fullText, speed = 25) {
+  return new Promise((resolve) => {
+    // Split on whitespace while preserving spacing and formatting
+    const words = fullText.split(/(\s+)/);
+    let index = 0;
+    let accumulatedText = "";
+
+    const timer = setInterval(() => {
+      if (index < words.length) {
+        accumulatedText += words[index];
+        bubbleElement.innerHTML = marked.parse(accumulatedText);
+        scrollToBottom();
+        index++;
+      } else {
+        clearInterval(timer);
+        resolve();
+      }
+    }, speed);
+  });
+}
+
+// Function to add a chat bubble (User or AI)
+async function addMessage(sender, text) {
   heroView.classList.add("hidden");
   messagesList.classList.remove("hidden");
 
@@ -49,25 +72,31 @@ function addMessage(sender, text) {
   if (sender === "user") {
     messageRow.innerHTML = `<div class="message-bubble">${text}</div>`;
     historyText.textContent = text;
+    messagesList.appendChild(messageRow);
+    scrollToBottom();
   } else {
-    const htmlContent = marked.parse(text);
+    // Create assistant message skeleton with an empty bubble
     messageRow.innerHTML = `
       <div class="avatar-small">
         <img src="profile.jpg" alt="Avatar" class="avatar-img" onerror="this.style.display='none';" />
       </div>
-      <div class="message-bubble">${htmlContent}</div>
+      <div class="message-bubble"></div>
     `;
-  }
+    messagesList.appendChild(messageRow);
+    scrollToBottom();
 
-  messagesList.appendChild(messageRow);
-  scrollToBottom();
+    // Stream words progressively into the message bubble
+    const bubble = messageRow.querySelector(".message-bubble");
+    await typeWordsIntoBubble(bubble, text, 20);
+  }
 }
 
+// Function to request response from FastAPI backend
 async function askAI(userQuestion) {
   if (!userQuestion) return;
 
   chatInput.value = "";
-  addMessage("user", userQuestion);
+  await addMessage("user", userQuestion);
 
   typingIndicator.classList.remove("hidden");
   scrollToBottom();
@@ -81,23 +110,26 @@ async function askAI(userQuestion) {
     const data = await response.json();
 
     typingIndicator.classList.add("hidden");
-    addMessage("assistant", data.reply);
+    await addMessage("assistant", data.reply);
   } catch (error) {
     typingIndicator.classList.add("hidden");
-    addMessage("assistant", "Sorry, I am unable to connect to the backend server right now.");
+    await addMessage("assistant", "Sorry, I am unable to connect to the backend server right now.");
   }
 }
 
+// Form Submit Event
 chatForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const question = chatInput.value.trim();
   askAI(question);
 });
 
+// Quick Prompt Card Click
 function sendPrompt(queryText) {
   askAI(queryText);
 }
 
+// New Chat Button Click
 newChatBtn.addEventListener("click", () => {
   messagesList.innerHTML = "";
   messagesList.classList.add("hidden");
@@ -106,7 +138,7 @@ newChatBtn.addEventListener("click", () => {
 });
 
 // -------------------------------------------------------------
-// 4. MODALS (With interactive GitHub Repository Links)
+// 4. MODALS (Popups with Links & Dynamic Content)
 // -------------------------------------------------------------
 function openModal(category) {
   modalOverlay.classList.remove("hidden");
@@ -195,6 +227,7 @@ function openModal(category) {
     `;
   }
 
+  // Refresh icons inside dynamically injected modal content
   lucide.createIcons();
 }
 
@@ -202,6 +235,7 @@ function closeModal() {
   modalOverlay.classList.add("hidden");
 }
 
+// Close modal when clicking outside box
 window.addEventListener("click", (e) => {
   if (e.target === modalOverlay) closeModal();
 });
