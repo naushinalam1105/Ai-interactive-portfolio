@@ -42,9 +42,9 @@ EDUCATION & ACADEMICS:
 
 TECHNICAL SKILLS:
 - Languages: Python, JavaScript (ES6+), Java, C, SQL, HTML5, CSS3
-- AI & Machine Learning: Groq LLM API, Prompt Engineering, Agentic AI, REST API LLM Inference, Context Optimization
+- AI & Machine Learning: Groq LLM API, Prompt Engineering, Agentic AI, LLM Inference
 - Backend & Runtimes: FastAPI, Uvicorn, Pydantic, Node.js, Express.js, Flask
-- Frontend Technologies: React.js, Vite, Tailwind CSS (v4), Recharts Data Visualization, Lucide React
+- Frontend Technologies: React.js, Vite, Tailwind CSS (v4)
 - Databases & Cloud: MongoDB Atlas, MySQL, SQLite, Render, Vercel, Microsoft Azure
 - Tools & Core Engineering: Data Structures & Algorithms (DSA), Git, GitHub, UI/UX (Figma), AutoCAD (3D Printing)
 
@@ -56,6 +56,9 @@ PROFESSIONAL EXPERIENCE:
 - Web Developer Intern (Hybrid) at InAmigos Foundation (IAF) (May 2026 – Jun 2026):
   * Built mobile-first responsive web modules, enhancing platform layout consistency and visual accessibility across diverse viewports.
   * Partnered with UI/UX teams to modernize core page components, streamlining CSS utility layouts for faster overall load speeds.
+-3D Printing & Additive Manufacturing (160 Hours) – C-DAC, MeitY (Jul 2025 – Aug 2025):
+  * Gained hands-on experience in 3D printing technologies and additive manufacturing processes, including design, modeling, and post-processing techniques.
+  *designed and assembled an ardruino based bluetooth controlled smart vehicle integrating 3D printed components, showcasing practical application of additive manufacturing in robotics. 
 
 KEY PROJECTS:
 - Carbon Footprint & Eco-Impact Tracker Platform:
